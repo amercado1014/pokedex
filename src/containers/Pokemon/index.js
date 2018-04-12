@@ -40,6 +40,7 @@ export class Pokemon extends Component {
   render() {
     const { displayedPokemon, show } = this.state
     const { name, pokemon } = this.props.type
+    const divHeight = show ? 'show' : ''
     const displayPokemon = displayedPokemon.map(pokemon => {
       return (
         <div>
@@ -51,7 +52,7 @@ export class Pokemon extends Component {
     })
 
     return (
-      <div className="pokemon"
+      <div className={`pokemon ${divHeight}`}
         onClick={() => this.handleClick(pokemon, name)}>
         <p>{name}</p>
         {show &&

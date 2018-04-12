@@ -3,7 +3,11 @@
   height: 65px;
   width: 350px;
   margin: 10px 10px;
-  overflow: scroll;
+  overflow: auto;
+}
+
+.show {
+  height: 350px;
 }
 
 p {
