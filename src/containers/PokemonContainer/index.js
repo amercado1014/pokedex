@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addPokemonTypes } from '../../actions';
 import { fetchPokemonTypes } from "../../api/apiCalls/fetchPokemonTypes";
 import { withRouter } from 'react-router-dom';
+import Pokemon from '../Pokemon';
 
 export class PokemonContainer extends Component {
 
@@ -13,10 +14,15 @@ export class PokemonContainer extends Component {
   }
 
   render() {
-    const { pokemonTypes } = this.props
+    const { pokemonTypes } = this.props;
+    console.log(pokemonTypes);
+    const displayPokemon = pokemonTypes.map(type => {
+      return <Pokemon key={type.id} type={type}/>
+    });
+
     return <div>
         {!pokemonTypes.length && <p>Loading...</p>}
-        Pokemon Container
+        {displayPokemon}
       </div>;
   }
 }
