@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes, { shape, func, string } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPokemonTypes } from '../../actions';
 import { fetchPokemonTypes } from "../../api/apiCalls/fetchPokemonTypes";
+import { withRouter } from 'react-router-dom';
 
 class PokemonContainer extends Component {
 
@@ -14,23 +15,14 @@ class PokemonContainer extends Component {
   render() {
     return (
       <div>
-        <button
-          onClick={() => {
-            this.props.fakeAction();
-            alert("FAKE");
-          }}
-        >
-          {" "}
-          FAKE{" "}
-        </button>
+        Pokemon Container
       </div>
     );
   }
 }
 
 PokemonContainer.propTypes = {
-  fake: shape({ fake: string }),
-  fakeAction: func.isRequired
+  addPokemonTypes: PropTypes.func
 };
 
 const mapStateToProps = ({ fake }) => ({ fake });
@@ -38,4 +30,4 @@ const mapStateToProps = ({ fake }) => ({ fake });
 const mapDispatchToProps = dispatch => ({ 
   addPokemonTypes: pokemonTypes => dispatch(addPokemonTypes(pokemonTypes))
 });
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PokemonContainer));
