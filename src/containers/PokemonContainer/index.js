@@ -13,11 +13,12 @@ class PokemonContainer extends Component {
   }
 
   render() {
-    return (
-      <div>
+    const { pokemonTypes } = this.props
+    console.log(pokemonTypes)
+    return <div>
+        {!pokemonTypes && <img src="../../loading.gif" alt="pokemon gif" />}
         Pokemon Container
-      </div>
-    );
+      </div>;
   }
 }
 
@@ -25,7 +26,9 @@ PokemonContainer.propTypes = {
   addPokemonTypes: PropTypes.func
 };
 
-const mapStateToProps = ({ fake }) => ({ fake });
+const mapStateToProps = state => ({ 
+  pokemonTypes: state.pokemonTypes
+});
 
 const mapDispatchToProps = dispatch => ({ 
   addPokemonTypes: pokemonTypes => dispatch(addPokemonTypes(pokemonTypes))
