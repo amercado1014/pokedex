@@ -17,7 +17,8 @@ export class Pokemon extends Component {
       bug: [],
       ghost: [],
       steel: [],
-      displayedPokemon: []
+      displayedPokemon: [],
+      show: false,
     }
   }
 
@@ -25,17 +26,19 @@ export class Pokemon extends Component {
     if (!this.state[name].length) {
       const pokemon=  await Promise.all(fetchPokemon(pokemonIdArray));
       this.setState({
-        [name]: pokemon
+        [name]: pokemon,
+        show: !this.state.show
       });
     } 
 
     this.setState({
-        displayedPokemon: this.state[name]
+        displayedPokemon: this.state[name],
+        show: !this.state.show
       });
   }
 
   render() {
-    const { displayedPokemon } = this.state
+    const { displayedPokemon, show } = this.state
     const { name, pokemon } = this.props.type
     const displayPokemon = displayedPokemon.map(pokemon => {
       return (
@@ -51,7 +54,7 @@ export class Pokemon extends Component {
       <div className="pokemon"
         onClick={() => this.handleClick(pokemon, name)}>
         <p>{name}</p>
-        {displayedPokemon.length &&
+        {show &&
         <div>
           {displayPokemon}
         </div>
