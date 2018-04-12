@@ -5,7 +5,7 @@ import { addPokemonTypes } from '../../actions';
 import { fetchPokemonTypes } from "../../api/apiCalls/fetchPokemonTypes";
 import { withRouter } from 'react-router-dom';
 
-class PokemonContainer extends Component {
+export class PokemonContainer extends Component {
 
   async componentDidMount() {
     const types = await fetchPokemonTypes();
@@ -14,7 +14,6 @@ class PokemonContainer extends Component {
 
   render() {
     const { pokemonTypes } = this.props
-    console.log(pokemonTypes)
     return <div>
         {!pokemonTypes.length && <p>Loading...</p>}
         Pokemon Container
@@ -26,11 +25,11 @@ PokemonContainer.propTypes = {
   addPokemonTypes: PropTypes.func
 };
 
-const mapStateToProps = state => ({ 
+export const mapStateToProps = state => ({ 
   pokemonTypes: state.pokemonTypes
 });
 
-const mapDispatchToProps = dispatch => ({ 
+export const mapDispatchToProps = dispatch => ({ 
   addPokemonTypes: pokemonTypes => dispatch(addPokemonTypes(pokemonTypes))
 });
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PokemonContainer));
