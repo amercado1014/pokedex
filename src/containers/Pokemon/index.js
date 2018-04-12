@@ -4,18 +4,58 @@ import './styles.css';
 import { fetchPokemon } from '../../api/apiCalls/fetchPokemon';
 
 export class Pokemon extends Component {
+  constructor(props) {
+    super(props);
 
-  handleClick = async (pokemonIdArray) => {
-    const pokemonArray =  await Promise.all(fetchPokemon(pokemonIdArray));
-    console.log(pokemonArray)
+    this.state = {
+      normal: [],
+      fighting: [],
+      flying: [],
+      poison: [],
+      ground: [],
+      rock: [],
+      bug: [],
+      ghost: [],
+      steel: [],
+      displayedPokemon: []
+    }
+  }
+
+  handleClick = async (pokemonIdArray, name) => {
+    if (!this.state[name].length) {
+      const pokemon=  await Promise.all(fetchPokemon(pokemonIdArray));
+      this.setState({
+        [name]: pokemon
+      });
+    } 
+
+    this.setState({
+        displayedPokemon: this.state[name]
+      });
   }
 
   render() {
+    const { displayedPokemon } = this.state
     const { name, pokemon } = this.props.type
+    const displayPokemon = displayedPokemon.map(pokemon => {
+      return (
+        <div>
+          <p>Name: {pokemon.name}</p>
+          <p>Weight: {pokemon.weight}</p>
+          <img src={pokemon.sprites.back_default} alt="pokemon"/>
+        </div>
+      );
+    })
+
     return (
       <div className="pokemon"
-        onClick={() => this.handleClick(pokemon)}>
+        onClick={() => this.handleClick(pokemon, name)}>
         <p>{name}</p>
+        {displayedPokemon.length &&
+        <div>
+          {displayPokemon}
+        </div>
+        }
       </div>
     )
   }
