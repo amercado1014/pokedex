@@ -1,12 +1,13 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
+import './styles.css';
 
 export class Pokemon extends Component {
   render() {
     const { name } = this.props.type
     return (
-      <div>
-        {name}
+      <div className="pokemon">
+        <p>{name}</p>
       </div>
     )
   }

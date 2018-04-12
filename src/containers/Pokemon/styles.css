@@ -1,0 +1,10 @@
+.pokemon {
+  border: solid 2px black;
+  height: 65px;
+  width: 350px;
+  margin: 10px 10px;
+}
+
+p {
+  font-weight: bold;
+}

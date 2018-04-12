@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './styles.css'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPokemonTypes } from '../../actions';
@@ -20,10 +21,12 @@ export class PokemonContainer extends Component {
       return <Pokemon key={type.id} type={type}/>
     });
 
-    return <div>
+    return (
+      <div className="pokemon-container">
         {!pokemonTypes.length && <p>Loading...</p>}
         {displayPokemon}
-      </div>;
+      </div>
+    );
   }
 }
 
