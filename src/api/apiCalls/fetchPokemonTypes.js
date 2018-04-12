@@ -5,6 +5,6 @@ export const fetchPokemonTypes = async () => {
     const pokemonTypes = await response.json();
     return pokemonTypes
   } catch (error) {
-    throw new Error('Error getting pokemon types:', error)
+    throw new Error(`Error getting pokemon types: ${error.message}`)
   }
 }

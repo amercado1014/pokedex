@@ -28,6 +28,6 @@ describe('fetchPokemonTypes', () => {
         status: 500, 
       })
     );
-    expect(fetchPokemonTypes()).rejects.toEqual(Error('Error getting pokemon types:'));
+    expect(fetchPokemonTypes()).rejects.toEqual(Error('Error getting pokemon types: response.json is not a function'));
   });
 })

@@ -16,7 +16,7 @@ class PokemonContainer extends Component {
     const { pokemonTypes } = this.props
     console.log(pokemonTypes)
     return <div>
-        {!pokemonTypes && <img src="../../loading.gif" alt="pokemon gif" />}
+        {!pokemonTypes.length && <p>Loading...</p>}
         Pokemon Container
       </div>;
   }
